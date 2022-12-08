@@ -32,10 +32,10 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: rajatrj16/nginx-test-app:$(git rev-parse --short "$GITHUB_SHA")
+          tags: rajatrj16/nginx-test-app:$GITHUB_SHA
 
       - name: Update Version
         run: |
-          git_hash=$(git rev-parse --short "$GITHUB_SHA")
           version=$(cat ./kubernetes/deployment.yaml | grep image: | awk '{print $2}')
-          sed -i "s/$version-$git_hash/" ./kubernetes/deployment.yaml
+          echo "$version"
+          sed -i "s/$version-$GITHUB_SHA/" ./kubernetes/deployment.yaml
