@@ -15,10 +15,10 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
+      Prune: true
+      Replace: true
+      allowEmpty: true
     syncOptions:
-      automated:
-        CreateNamespace: true
-        Prune: true
-        Replace: true
-        allowEmpty: true
-        selfHeal: true
+    - CreateNamespace=true
+    - Prune=true
+    - Replace=true
